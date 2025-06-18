@@ -1,6 +1,7 @@
 package com.example.airbnb;
-import com.example.airbnb.Listing;
 import com.example.airbnb.ListingRepository;
+import com.example.airbnb.Models.Listing;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -36,9 +37,7 @@ public class ListingService {
         repository.deleteById(id);
     }
 
-    public List<Listing> searchByNeighborhood(String neighborhood) {
-        return repository.findByNeighborhood(neighborhood);
-    }
+    
 
     public List<Listing> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
