@@ -21,8 +21,9 @@ public class ListingView extends VerticalLayout {
 
         TextField filter = new TextField("Buscar por nombre");
         Button search = new Button("Buscar", e -> {
-            grid.setItems(listingService.searchByName(filter.getValue()));
+            grid.setItems(listingService.getByNameWithCache(filter.getValue()));
         });
+
 
         Button refresh = new Button("Mostrar todos", e -> {
             grid.setItems(listingService.getAll());

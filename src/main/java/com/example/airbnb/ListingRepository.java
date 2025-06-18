@@ -6,4 +6,6 @@ import java.util.List;
 public interface ListingRepository extends MongoRepository<Listing, String> {
     List<Listing> findByNeighborhood(String neighborhood);
     List<Listing> findByNameContainingIgnoreCase(String name);
+   
+
 }
