@@ -1,6 +1,7 @@
 package com.example.airbnb.view;
 import com.example.airbnb.ListingService;
 import com.example.airbnb.Models.Listing;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Anchor;
@@ -23,18 +24,36 @@ public class ListingView extends VerticalLayout {
         Button search = new Button("Buscar", e -> {
         	grid.setItems(listingService.getByNameWithCache(filter.getValue()));
         });
+        
 
         Button refresh = new Button("Mostrar todos", e -> {
             grid.setItems(listingService.getAll());
         });
 
+        
+        
+        
+        Button reviewsBtn = new Button("Ver Reviews");
+        reviewsBtn.setEnabled(false); // Desactivado hasta seleccionar algo
+
+        grid.asSingleSelect().addValueChangeListener(event -> {
+            reviewsBtn.setEnabled(event.getValue() != null);
+        });
+
+        reviewsBtn.addClickListener(e -> {
+            Listing selected = grid.asSingleSelect().getValue();
+            if (selected != null) {
+                UI.getCurrent().navigate("reviews/" + selected.getId());
+            }
+        });
         Anchor goToForm = new Anchor("/form", "Agregar Alojamiento");
 
         grid.addColumn(Listing::getName).setHeader("Nombre");
         grid.addColumn(Listing::getPrice).setHeader("Precio");
         grid.addColumn(Listing::getAccommodates).setHeader("Capacidad");
 
-        add(filter, search, refresh, goToForm, grid);
+        add(filter, search, refresh, goToForm,reviewsBtn, grid);
         grid.setItems(listingService.getAll());
     }
+    
 }

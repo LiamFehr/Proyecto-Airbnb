@@ -1,17 +1,28 @@
 package com.example.airbnb.Models;
 
 import java.io.Serializable;
+
+import com.vaadin.flow.component.template.Id;
+
 public class Review  implements Serializable 
 { private static final long serialVersionUID = 1L;
-	 private String reviewer_id;
+@Id	 
+private String id;
      private String reviewer_name;
      private String date;
      private String comments;
-	public String getReviewer_id() {
-		return reviewer_id;
+     private String listingId;
+	public String getListingId() {
+		return listingId;
 	}
-	public void setReviewer_id(String reviewer_id) {
-		this.reviewer_id = reviewer_id;
+	public void setListingId(String listingId) {
+		this.listingId = listingId;
+	}
+	public String getid() {
+		return id;
+	}
+	public void setid(String reviewer_id) {
+		this.id = reviewer_id;
 	}
 	public String getReviewer_name() {
 		return reviewer_name;
