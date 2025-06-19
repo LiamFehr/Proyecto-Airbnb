@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 import java.io.Serializable;
 
-@Document(collection = "Alojamientos")
+@Document(collection = "listingsAndReviews")
 
 
 

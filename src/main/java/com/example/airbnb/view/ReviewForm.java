@@ -17,6 +17,7 @@ import com.vaadin.flow.router.Route;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,7 +65,7 @@ public class ReviewForm extends VerticalLayout implements HasUrlParameter<String
                     r.setReviewerId(reviewerId.getValue());
                     r.setReviewerName(reviewerName.getValue());
                     r.setComments(comments.getValue());
-                    r.setDate("2025-06-18"); // Hardcoded temporal
+                    r.setDate(LocalDate.now().toString()); 
 
                     if (listing.getReviews() == null) {
                         listing.setReviews(new ArrayList<>());
