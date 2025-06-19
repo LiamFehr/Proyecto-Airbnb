@@ -297,7 +297,5 @@ public class Listing implements Serializable {
     private Availability availability;
     private ReviewScores review_scores;
 
-    // Getters y Setters...
-
-  
+     
 }

@@ -30,14 +30,26 @@ public class ListingService {
     }
 
     public Listing save(Listing listing) {
+        if (listing.getName() != null) {
+            redisTemplate.delete("airbnb:name:" + listing.getName().toLowerCase());
+        }
         return repository.save(listing);
     }
 
     public void delete(String id) {
+        repository.findById(id).ifPresent(listing -> {
+            if (listing.getName() != null) {
+                redisTemplate.delete("airbnb:name:" + listing.getName().toLowerCase());
+            }
+        });
         repository.deleteById(id);
     }
 
+
     
+    public Listing findById(String id) {
+        return repository.findById(id).orElse(null);
+    }
 
     public List<Listing> searchByName(String name) {
         return repository.findByNameContainingIgnoreCase(name);
